@@ -5,9 +5,6 @@
     "node": ">=20.0.0"
   },
   "type": "module",
-  "workspaces": [
-    "packages/*"
-  ],
   "private": "true",
   "repository": {
     "type": "git",
