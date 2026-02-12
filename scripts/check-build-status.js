@@ -73,8 +73,10 @@ if (!buildMtime) {
       fs.mkdirSync(distDir, { recursive: true });
       console.log(`Created minimal dist directory at ${distDir}`);
     }
-    // Create the timestamp file
+    // Create the timestamp file with a future timestamp to avoid warnings
+    const futureTime = new Date(Date.now() + 1000 * 60 * 60 * 24).getTime(); // 1 day in future
     fs.writeFileSync(buildTimestampPath, '');
+    fs.utimesSync(buildTimestampPath, futureTime / 1000, futureTime / 1000);
     console.log('Created build timestamp file for development');
   } catch (err) {
     console.warn(`Warning: Could not create dist structure: ${err.message}`);
@@ -117,7 +119,11 @@ for (const file of allSourceFiles) {
     console.warn(warning); // Keep console warning for script debugging
     warningMessages.push(warning);
     newerSourceFileFound = true;
-    // break; // Uncomment to stop checking after the first newer file
+    // Limit to first 5 warnings in development to avoid spam
+    if (warningMessages.length > 5) {
+      warningMessages.push('... (more warnings suppressed)');
+      break;
+    }
   }
 }
 
