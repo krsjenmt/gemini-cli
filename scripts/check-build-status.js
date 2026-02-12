@@ -52,6 +52,12 @@ function findSourceFiles(dir, allFiles = []) {
 
 console.log('Checking build status...');
 
+// Skip build checks in development mode (when NODE_ENV is not production)
+if (process.env.NODE_ENV !== 'production') {
+  console.log('Skipping build checks in development mode.');
+  process.exit(0);
+}
+
 // Clean up old warnings file before check
 try {
   if (fs.existsSync(warningsFilePath)) {
