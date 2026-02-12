@@ -44,6 +44,7 @@ if (!existsSync(generatedCoreDir)) {
 try {
   const gitHash = execSync('git rev-parse --short HEAD', {
     encoding: 'utf-8',
+    stdio: ['pipe', 'pipe', 'ignore'],
   }).trim();
   if (gitHash) {
     gitCommitInfo = gitHash;
@@ -52,7 +53,8 @@ try {
   const result = await readPackageUp();
   cliVersion = result?.packageJson?.version ?? 'UNKNOWN';
 } catch {
-  // ignore
+  // Silently ignore git and package reading errors (not in a git repo or other issues)
+  // This allows the script to continue with default values
 }
 
 const fileContent = `/**

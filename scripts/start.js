@@ -37,11 +37,13 @@ let sandboxCommand = undefined;
 try {
   sandboxCommand = execSync('node scripts/sandbox_command.js', {
     cwd: root,
+    stdio: ['pipe', 'pipe', 'ignore'],
   })
     .toString()
     .trim();
 } catch {
-  // ignore
+  // Silently ignore sandbox command errors in development
+  console.log('[v0] Running in local development mode without sandbox');
 }
 // if debugging is enabled and sandboxing is disabled, use --inspect-brk flag
 // note with sandboxing this flag is passed to the binary inside the sandbox
