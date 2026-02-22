@@ -27,10 +27,16 @@ const root = join(__dirname, '..');
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf-8'));
 
 // check build status, write warnings to file for app to display if needed
-execSync('node ./scripts/check-build-status.js', {
-  stdio: 'inherit',
-  cwd: root,
-});
+try {
+  execSync('node ./scripts/check-build-status.js', {
+    stdio: 'inherit',
+    cwd: root,
+  });
+} catch (error) {
+  console.error('[WARNING] Build status check failed. This is a complex CLI tool that requires building packages first.');
+  console.error('Run: npm run build');
+  process.exit(1);
+}
 
 const nodeArgs = [];
 let sandboxCommand = undefined;
