@@ -11,8 +11,7 @@ import { join } from 'node:path';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const packageJsonPath = join(__dirname, '../package.json');
+const packageJsonPath = '/vercel/share/v0-project/package.json';
 
 try {
   const pkg = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
