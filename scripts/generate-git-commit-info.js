@@ -44,11 +44,16 @@ if (!existsSync(generatedCoreDir)) {
 try {
   const gitHash = execSync('git rev-parse --short HEAD', {
     encoding: 'utf-8',
+    stdio: ['pipe', 'pipe', 'pipe'],
   }).trim();
   if (gitHash) {
     gitCommitInfo = gitHash;
   }
+} catch {
+  // Git not available or not a repository - use N/A as default
+}
 
+try {
   const result = await readPackageUp();
   cliVersion = result?.packageJson?.version ?? 'UNKNOWN';
 } catch {
