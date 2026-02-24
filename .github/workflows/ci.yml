@@ -60,7 +60,7 @@ jobs:
           fetch-depth: 0
 
       - name: 'Set up Node.js'
-        uses: 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' # ratchet:actions/setup-node@v4.4.0
+        uses: 'actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238' # ratchet:actions/setup-node@v6.2.0
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
@@ -148,7 +148,7 @@ jobs:
         uses: 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' # ratchet:actions/checkout@v5
 
       - name: 'Set up Node.js ${{ matrix.node-version }}'
-        uses: 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' # ratchet:actions/setup-node@v4
+        uses: 'actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238' # ratchet:actions/setup-node@v6.2.0
         with:
           node-version: '${{ matrix.node-version }}'
           cache: 'npm'
@@ -236,7 +236,7 @@ jobs:
         uses: 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' # ratchet:actions/checkout@v5
 
       - name: 'Set up Node.js ${{ matrix.node-version }}'
-        uses: 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' # ratchet:actions/setup-node@v4
+        uses: 'actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238' # ratchet:actions/setup-node@v6.2.0
         with:
           node-version: '${{ matrix.node-version }}'
           cache: 'npm'
@@ -374,7 +374,7 @@ jobs:
           ref: '${{ github.event.inputs.branch_ref || github.ref }}'
 
       - name: 'Set up Node.js 20.x'
-        uses: 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' # ratchet:actions/setup-node@v4
+        uses: 'actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238' # ratchet:actions/setup-node@v6.2.0
         with:
           node-version: '20.x'
           cache: 'npm'
